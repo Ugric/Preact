@@ -1,0 +1,13 @@
+
+acronym = "acronym"
+applet = "applet"
+basefont = "basefont"
+big = "big"
+center = "center"
+dir = "dir"
+font = "font"
+frame = "frame"
+frameset = "frameset"
+noframes = "noframes"
+strike = "strike"
+tt = "tt"
