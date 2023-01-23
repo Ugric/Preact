@@ -104,3 +104,4 @@ ul = "ul"
 var = "var"
 video = "video"
 wbr = "wbr"
+fragment = ''

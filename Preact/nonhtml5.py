@@ -1,4 +1,3 @@
-
 acronym = "acronym"
 applet = "applet"
 basefont = "basefont"

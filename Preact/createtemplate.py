@@ -1,13 +1,37 @@
-from .html5 import html, body, head
+from .html5 import html, body, head, fragment, DOCTYPE
+
 templatehead = []
-_firstset = True
-def sethtmltemplatehead(headchildren):
-  global templatehead
-  global _firstset
-  if _firstset:
-    _firstset = False
-    templatehead = headchildren
-  else:
-    raise ValueError("the sethtmltemplatehead function cannot be called more then once.")
+__firstset = True
+
+
+def sethtmltemplatehead(headchildren: list):
+    global templatehead
+    global __firstset
+    if __firstset:
+        __firstset = False
+        templatehead = headchildren
+    else:
+        print(
+            "warning: the sethtmltemplatehead function should not be called more then once."
+        )
+
+
 def usehtmltemplate(bodychildren):
-  return {"type": html, "children": [{"type": head, "children": templatehead}, {"type": body, "children": bodychildren}]}
+    return {
+        'type':
+        fragment,
+        'children': [{
+            'type': DOCTYPE,
+            'children': 'html'
+        }, {
+            "type":
+            html,
+            "children": [{
+                "type": head,
+                "children": templatehead
+            }, {
+                "type": body,
+                "children": bodychildren
+            }]
+        }]
+    }
