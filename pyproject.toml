@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "p"
+name = "Preact_HTML"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "render UI components using a JSX-like syntax, making it easy to create dynamic and interactive user interfaces"
+authors = ["Will <hi@wbell.dev>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3"
 
 [tool.poetry.dev-dependencies]
 
