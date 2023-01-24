@@ -32,7 +32,7 @@ class Preact:
                     'elements cannot have spaces or special charactors in its type!')
             tagname = (elementdata["type"].lower() if elementdata["type"]
                        not in Preact.typenamepass else elementdata["type"])
-            if tagname != '':
+            if tagname != 'fragment':
                 output.append(f'<{tagname}')
                 if "props" in elementdata:
                     for props in elementdata["props"]:
@@ -41,15 +41,18 @@ class Preact:
                             raise NameError(
                                 'setting key cannot have spaces or special charactors in its name!'
                             )
+                        if isinstance(elementdata["props"][props], str):
+                            elementdata["props"][props] = html.escape(
+                                elementdata["props"][props])
                         output.append(
-                            f' {strippedprops}={json.dumps(html.escape(elementdata["props"][props]))}'
+                            f' {strippedprops}={json.dumps(elementdata["props"][props])}'
                         )
             if tagname == DOCTYPE:
                 output.append(f' {elementdata["children"]}>')
             elif ("children" in elementdata and
                   len(elementdata["children"]) > 0) or (tagname
                                                         in Preact.cannotselfclose):
-                if tagname != '':
+                if tagname != 'fragment':
                     output.append(">")
                 if "children" in elementdata:
                     for child in elementdata["children"]:
@@ -59,10 +62,10 @@ class Preact:
                             output.append(html.escape(child))
                         else:
                             output.append(child)
-                if tagname != '':
+                if tagname != 'fragment':
                     output.append(f'</{tagname}>')
-            elif tagname != '' and tagname not in Preact.doesntclose:
+            elif tagname != 'fragment' and tagname not in Preact.doesntclose:
                 output.append("/>")
-            elif tagname != '':
+            elif tagname != 'fragment':
                 output.append(">")
             return ''.join(output)
