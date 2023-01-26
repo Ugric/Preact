@@ -105,3 +105,4 @@ var = "var"
 video = "video"
 wbr = "wbr"
 fragment = 'fragment'
+UNSAFEHTML = 'UNSAFEHTML'
