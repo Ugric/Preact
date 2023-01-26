@@ -3,6 +3,8 @@ from Preact.html5 import h1, div, p
 
 app = Pext(__file__, True)
 
+app.head.append({'type': app.loadScript, 'src': 'index.js' })
+
 styles = app.css.load('Home.module.css')
 
 

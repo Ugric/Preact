@@ -43,16 +43,14 @@ class Pext:
         self.flask = Flask(__name__)
 
     def loadScript(self, props):
-        path = os.path.join(self.dirname, props['props']['src'])
-        if 'elementProps' not in props['props']:
-            props['props']['elementProps'] = {}
-        if path not in self.scriptcache:
+        path = os.path.join(self.dirname, props['src'])
+        if path not in self.scriptcache or self.dev:
             file = open(path, 'r')
             read = file.read()
             file.close()
             self.scriptcache[path] = js(read)
         code = self.scriptcache[path]
-        return {'type': script, 'props': props['props']['elementProps'], 'children': code}
+        return {'type': script, 'props': props['props'], 'children': code}
 
     def render(self, elements: Union[dict, str, list]) -> str:
         return Preact.Render(self.template.use(elements))
